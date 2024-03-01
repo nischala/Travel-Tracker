@@ -42,7 +42,6 @@ async function checkVisisted() {
 
 
 app.get("/", async (req, res) => {
-  //const users = await getUsers();
   const currentUser = await getCurrentUser();
   const countries = await checkVisisted();
   res.render("index.ejs", {
@@ -89,8 +88,6 @@ app.post("/user", async (req, res) => {
 });
 
 app.post("/new", async (req, res) => {
-  //Hint: The RETURNING keyword can return the data that was inserted.
-  //https://www.postgresql.org/docs/current/dml-returning.html
   const name = req.body.name;
   const color = req.body.color;
   const result = await db.query("INSERT INTO users (name, color) VALUES ($1, $2) RETURNING *;", [name, color]);
